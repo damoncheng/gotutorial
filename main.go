@@ -1,10 +1,27 @@
 package main
 
-import "fmt"
-import greetings "github.com/damoncheng/gotugorial"
+import (
+	"fmt"
+	"github.com/damoncheng/gotutorial/greetings"
+	"log"
+)
 
 func main() {
+
+	log.SetPrefix("greetings: ")
+	log.SetFlags(0)
+
 	// Get a greeting message and print it.
-	message := greetings.Hello("Gladys")
-	fmt.Println(message)
+	// message, err := greetings.Hello("Gladys")
+	names := []string{"Gladys", "Samantha", "Darrin"}
+
+	//Request greeting messages for the names
+	messages, err := greetings.Hellos(names)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//fmt.Println("success")
+	fmt.Println(messages)
 }
