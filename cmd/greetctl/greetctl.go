@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/damoncheng/gotutorial/greetings"
+	"github.com/damoncheng/gotutorial/pkg/greetings"
 	"log"
 )
 

@@ -1,4 +1,4 @@
-package main
+package web
 
 import (
 	"github.com/gin-gonic/gin"
@@ -20,21 +20,13 @@ var albums = []album{
 	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
 }
 
-func main() {
-	router := gin.Default()
-	router.GET("/albums", getAlbums)
-	router.GET("/albums/:id", getAlbumByID)
-	router.POST("/albums", postAlbums)
-	router.Run("localhost:8080")
-}
-
 // getAlbums responds with the list of all albums as JSON.
-func getAlbums(c *gin.Context) {
+func GetAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
 }
 
 // postAlbums adds an album from JSON received in the request body.
-func postAlbums(c *gin.Context) {
+func PostAlbums(c *gin.Context) {
 	var newAlbum album
 
 	// Call BindJSON to bind the received JSON to
@@ -50,7 +42,7 @@ func postAlbums(c *gin.Context) {
 
 // getAlbumByID locates the album whose ID value matches the id
 // parameter sent by the client, then returns that album as a response.
-func getAlbumByID(c *gin.Context) {
+func GetAlbumByID(c *gin.Context) {
 	id := c.Param("id")
 
 	// Loop over the list of albums, looking for
