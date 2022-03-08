@@ -4,6 +4,7 @@ import (
 	"github.com/damoncheng/gotutorial/pkg/wiki"
 	"log"
 	"net/http"
+	_ "net/http/pprof"
 )
 
 func main() {
@@ -15,6 +16,7 @@ func main() {
 
 	http.HandleFunc("/", wiki.Handler)
 	http.HandleFunc("/view/", wiki.ViewHandler)
+	http.HandleFunc("/sleepview/", wiki.SleepViewHandler)
 	http.HandleFunc("/edit/", wiki.EditHandler)
 	http.HandleFunc("/save/", wiki.SaveHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))

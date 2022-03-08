@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"time"
 )
 
 // Page for web page
@@ -59,6 +60,19 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+func SleepViewHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("SleepViewHandler starting")
+	title := r.URL.Path[len("/sleepview/"):]
+	p, err := LoadPage(title)
+	if err != nil {
+		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+		return
+	}
+	time.Sleep(time.Millisecond * 2000)
+	log.Println("after sleep")
+	renderTemplate(w, "view", p)
 }
 
 func ViewHandler(w http.ResponseWriter, r *http.Request) {
