@@ -16,9 +16,13 @@ func main() {
 
 	http.HandleFunc("/", wiki.Handler)
 	http.HandleFunc("/view/", wiki.ViewHandler)
-	http.HandleFunc("/sleepview/", wiki.SleepViewHandler)
 	http.HandleFunc("/edit/", wiki.EditHandler)
 	http.HandleFunc("/save/", wiki.SaveHandler)
+
+	go func() {
+
+	}()
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
 }
